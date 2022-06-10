@@ -12,7 +12,11 @@ class IngredientList extends Component {
         })
         return(
             <>
-                <h2>Ingredient List</h2>
+                <h2 className="
+                    text-xl
+                ">
+                    Ingredient List
+                </h2>
                {listToRender}
             </>
         )

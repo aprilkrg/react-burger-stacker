@@ -11,10 +11,18 @@ class BurgerPane extends Component {
         })
         return(
             <>
-                <h2>Burger Stacking Area</h2>
+                <h2 className="
+                    text-xl
+                ">
+                    Burger Stacking Area
+                </h2>
                 <button 
                     onClick={this.props.handleRemoveFromStack}
-                >
+                    className="
+                        p-1
+                        bg-gray-300
+                        border-4 border-grey-400
+                ">
                     Clear
                 </button>
                 {stackToRender.reverse()}

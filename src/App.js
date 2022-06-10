@@ -19,48 +19,68 @@ const ingredientsArr = [
 ];
 
 class App extends Component {
-	state = {
-		stack: []
-	}
+    state = {
+        stack: [],
+    };
 
-	handleAddToStack = (e) => {
-		console.log("add to stack", e.target.innerText, e.target.style.backgroundColor)
-		const newStateIngredient = {
-			name: e.target.innerText,
-			color: e.target.style.backgroundColor
-		}
-		const stateCopy = this.state.stack
-		stateCopy.push(newStateIngredient)
-		this.setState({
-			stack: stateCopy
-		})
-	}
+    handleAddToStack = (e) => {
+        console.log(
+            "add to stack",
+            e.target.innerText,
+            e.target.style.backgroundColor
+        );
+        const newStateIngredient = {
+            name: e.target.innerText,
+            color: e.target.style.backgroundColor,
+        };
+        const stateCopy = this.state.stack;
+        stateCopy.push(newStateIngredient);
+        this.setState({
+            stack: stateCopy,
+        });
+    };
 
-	handleRemoveFromStack = (e) => {
-		console.log("remove from stack", this.state.stack, 'STATE <<<')
-		this.setState({
-			stack: []
-		})
-	}
-	render() {
+    handleRemoveFromStack = (e) => {
+        console.log("remove from stack", this.state.stack, "STATE <<<");
+        this.setState({
+            stack: [],
+        });
+    };
+    render() {
         return (
-			<>
-				<h1>Burger Stacker</h1>
-				<div className="list-div">
-					<IngredientList 
-						items={ingredientsArr} 
-						handleAddToStack={this.handleAddToStack}
-					/>
-				</div>
-				<div className="stack-div">
-					<BurgerPane 
-						stack={this.state.stack}
-						handleRemoveFromStack={this.handleRemoveFromStack}
-					/>
-				</div>
-			</>
+            <div className="
+					grid grid-cols-2
+			">
+                <h1 className="
+					col-span-2
+					text-center
+					text-2xl
+				">
+					Burger Stacker
+				</h1>
+                <div className="
+					list-div
+					col-start-1
+					text-center
+				">
+                    <IngredientList
+                        items={ingredientsArr}
+                        handleAddToStack={this.handleAddToStack}
+                    />
+                </div>
+                <div className="
+					stack-div
+					col-start-2
+					text-center
+				">
+                    <BurgerPane
+                        stack={this.state.stack}
+                        handleRemoveFromStack={this.handleRemoveFromStack}
+                    />
+                </div>
+            </div>
         );
     }
 }
 
-export default App
+export default App;
