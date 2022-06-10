@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Ingredient from './Ingredient'
 
 class IngredientList extends Component {
-    render(){
+    render() {
         const listToRender = this.props.items.map((item, i) => {
             return <Ingredient
                 item={item}
@@ -10,20 +10,20 @@ class IngredientList extends Component {
                 handleAddToStack={this.props.handleAddToStack}
             />
         })
-        return(
+        return (
             <div
                 className="
                     cols-start-1
                 "
             >
-            <h2
-                className="text-xl
-                    row-start-2
-                "
-
-            >Ingredient List</h2>
-            {/* rendering ingredient per component */}
-            {listToRender}
+                <h2
+                    className="text-xl
+                        row-start-2
+                    "
+                >
+                    Ingredient List
+                </h2>
+                {listToRender}
             </div>
         )
     }
