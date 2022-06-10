@@ -50,8 +50,18 @@ class App extends Component {
 
 	render() {
         return (
-			<>
-				<h1>Burger Stacker</h1>
+			<div
+				className="
+					grid grid-cols-2 
+					text-center
+				"
+			>
+				<h1
+					className="
+						text-3xl
+						col-span-2
+					"
+				>Burger Stacker</h1>
 				<IngredientList 
 					items={ingredientsArr}
 					handleAddToStack={this.handleAddToStack}
@@ -60,7 +70,7 @@ class App extends Component {
 					stack={this.state.stack}
 					handleRemoveFromStack={this.handleRemoveFromStack}
 				/>
-			</>
+			</div>
         );
     }
 }

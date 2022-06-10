@@ -11,11 +11,20 @@ class IngredientList extends Component {
             />
         })
         return(
-            <>
-            <h2>Ingredient List</h2>
+            <div
+                className="
+                    cols-start-1
+                "
+            >
+            <h2
+                className="text-xl
+                    row-start-2
+                "
+
+            >Ingredient List</h2>
             {/* rendering ingredient per component */}
             {listToRender}
-            </>
+            </div>
         )
     }
 }

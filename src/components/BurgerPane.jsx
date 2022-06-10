@@ -7,18 +7,34 @@ class BurgerPane extends Component {
             return <Ingredient
                 item={item}
                 i={i}
+                key={`ingred-${i}`}
             />
         })
         return(
-            <>
-            <h2>Burger Pane</h2>
+            <div 
+                className="
+                    cols-start-2
+                "
+            >
+            <h2
+                className="
+                    text-xl
+                    row-start-2
+                "
+            >Burger Pane</h2>
             <button
+                className="
+                    bg-gray-400
+                    border-gray-600
+                    p-2
+
+                "
                 onClick={this.props.handleRemoveFromStack}
             >
                 Clear
             </button>
             {stackToRender.reverse()}
-            </>
+            </div>
         )
     }
 }
