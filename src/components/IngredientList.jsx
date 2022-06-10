@@ -1,14 +1,20 @@
-// TODO import React, and component files
-
+import React, { Component } from 'react'
+import Ingredient from './Ingredient'
 
 class IngredientList extends Component {
-    render() {
-        // TODO map over items from props, save to variable - return a component and pass necessary props
-        
+    render(){
+        const listToRender = this.props.items.map((item, i) => {
+            return <Ingredient
+                item={item}
+                i={i}
+                handleAddToStack={this.props.handleAddToStack}
+            />
+        })
         return(
             <>
-                <h2>Ingredient List</h2>
-               {/* render variable declared above */}
+            <h2>Ingredient List</h2>
+            {/* rendering ingredient per component */}
+            {listToRender}
             </>
         )
     }

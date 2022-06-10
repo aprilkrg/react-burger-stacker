@@ -1,14 +1,23 @@
-// TODO import React, and component files
+import React, { Component } from 'react'
+import Ingredient from './Ingredient'
 
 class BurgerPane extends Component {
-    render() {
-            // TODO map over items from props, save to variable - return a component and pass necessary props
-
+    render(){
+        const stackToRender = this.props.stack.map((item, i) => {
+            return <Ingredient
+                item={item}
+                i={i}
+            />
+        })
         return(
             <>
-                <h2>Burger Stacking Area</h2>
-                {/* render button that invokes handleRemove */}
-                {/* render variable declared above */}
+            <h2>Burger Pane</h2>
+            <button
+                onClick={this.props.handleRemoveFromStack}
+            >
+                Clear
+            </button>
+            {stackToRender.reverse()}
             </>
         )
     }
