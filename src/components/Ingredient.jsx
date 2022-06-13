@@ -1,13 +1,19 @@
-// TODO import React
+import React, { Component } from 'react'
 
 class Ingredient extends Component {
-    render() {
-        return (
+    render(){
+        return(
             <>
-            {/* create div with key, onClick, and style. innerText should be the item name.
-            style={{backgroundColor: this.props.item.color}} */}
+            <div
+                key={`ingred-${this.props.i}`}
+                onClick={this.props.handleAddToStack}
+                style={{backgroundColor: this.props.item.color}}
+            >
+                {this.props.item.name}
+            </div>
             </>
         )
     }
 }
+
 export default Ingredient
