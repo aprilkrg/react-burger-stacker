@@ -1,41 +1,34 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Ingredient from './Ingredient'
 
-class BurgerPane extends Component {
+
+export default class BurgerPane extends Component {
     render() {
-        const stackToRender = this.props.stack.map((item, i) => {
-            return <Ingredient
-                item={item}
-                i={i}
-                key={`stack-${i}`}
-            />
+        // this.props.ingredients = [] our ingredients array 
+        const burgerIngredients = this.props.ingredients.map((ingredient, i) => {
+            return (
+                <div
+                key={`Ingredient-${i}`}
+                className="ingredient-container"
+                >
+                <Ingredient 
+                    
+                    ingredient={ingredient}
+                /> 
+            </div>
+            )
         })
         return (
-            <div
-                className="
-                    cols-start-2
-                "
-            >
-                <h2
-                    className="
-                        text-xl
-                        row-start-2
-                    "
-                >Burger Pane</h2>
-                <button
-                    onClick={this.props.handleRemoveFromStack}
-                    className="
-                        bg-gray-400
-                        border-gray-600
-                        p-2
-                    "
-                >
-                    Clear
+            <div className="burger-pane">
+                <h1>Burger Pane</h1>
+               <div className="burger-ingredients">{burgerIngredients}</div>
+               <button
+               onClick={this.props.handleClearBurger}
+               >
+                   Clear Burger
                 </button>
-                {stackToRender.reverse()}
+    
             </div>
         )
     }
-}
-
-export default BurgerPane
+} 

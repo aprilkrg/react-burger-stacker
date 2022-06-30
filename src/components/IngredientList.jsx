@@ -1,32 +1,32 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Ingredient from './Ingredient'
 
-class IngredientList extends Component {
+
+export default class IngredientList extends Component {
+
     render() {
-        const listToRender = this.props.items.map((item, i) => {
-            return <Ingredient
-                item={item}
-                i={i}
-                handleAddToStack={this.props.handleAddToStack}
-            />
+        // this.props.ingredients = [] our ingredients array 
+        const ingredients = this.props.ingredients.map((ingredient, i) => {
+            return (
+            <div
+                key={`Ingredient-${i}`}
+                className="ingredient-container"
+                onClick={this.props.handleIngredientClick}
+                >
+                <Ingredient 
+                    
+                    ingredient={ingredient}
+                    handleIngredientClick={this.props.handleIngredientClick}
+                /> 
+            </div>
+            )
         })
         return (
-            <div
-                className="
-                    cols-start-1
-                "
-            >
-                <h2
-                    className="text-xl
-                        row-start-2
-                    "
-                >
-                    Ingredient List
-                </h2>
-                {listToRender}
+            <div className="ingredient-list">
+                <h1>Ingredient List</h1>
+               {ingredients}
+    
             </div>
         )
     }
-}
-
-export default IngredientList
+} 
