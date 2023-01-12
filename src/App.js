@@ -18,7 +18,7 @@ const ingredientsArr = [
     { name: "Onion", color: "lightyellow" },
 ];
 
-class App extends Component {
+export default class App extends Component {
 	state = {
 		stack: []
 	}
@@ -37,13 +37,15 @@ class App extends Component {
 		// })
 		// === ! BETTER WAY, callback function with prevState ! === //
 		this.setState(prevState => {
-			const stack = [newStateIngredient, ...prevState.stack]
+			// found that declared var needs to be named same as state otherwise it won't work
+			// adding the new ingredient at the end of the array will cause the ingredients to stack from the bottom up the way we want
+			const stack = [...prevState.stack, newStateIngredient]
 			return {stack}
 		})
 	}
 
 	handleRemoveFromStack = (e) => {
-		console.log("remove from stack", this.state.stack, 'STATE <<<')
+		console.log("remove from stack", this.state.stack)
 		this.setState({
 			stack: []
 		})
@@ -68,5 +70,3 @@ class App extends Component {
         );
     }
 }
-
-export default App

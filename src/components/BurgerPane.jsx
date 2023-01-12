@@ -1,14 +1,10 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Ingredient from './Ingredient'
+import BurgerStack from './BurgerStack'
 
-class BurgerPane extends Component {
+export default class BurgerPane extends Component {
     render() {
-        const stackToRender = this.props.stack.map((item, i) => {
-            return <Ingredient
-                item={item}
-                i={i}
-            />
-        })
+
         return(
             <>
                 <h2>Burger Stacking Area</h2>
@@ -17,10 +13,10 @@ class BurgerPane extends Component {
                 >
                     Clear
                 </button>
-                {stackToRender.reverse()}
+                <BurgerStack
+                    stack={this.props.stack}
+                />
             </>
         )
     }
 }
-
-export default BurgerPane
