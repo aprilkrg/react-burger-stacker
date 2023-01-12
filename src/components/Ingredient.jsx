@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 
-class Ingredient extends Component {
+export default class Ingredient extends Component {
     render() {
         return (
             <div
                 key={`ingred-${this.props.i}`}
                 onClick={this.props.handleAddToStack}
-                style={{backgroundColor: this.props.item.color}}
+                style={{
+                    backgroundColor: this.props.item.color, 
+                    width: "200px"
+                }}
             >
                 {this.props.item.name}
             </div>
         )
     }
 }
-export default Ingredient

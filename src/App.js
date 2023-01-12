@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Component } from "react";
+import { Component } from "react";
 import IngredientList from "./components/IngredientList";
 import BurgerPane from "./components/BurgerPane";
 
@@ -20,7 +20,8 @@ const ingredientsArr = [
 
 export default class App extends Component {
 	state = {
-		stack: []
+		stack: [],
+		input: ""
 	}
 
 	handleAddToStack = (e) => {
@@ -29,16 +30,7 @@ export default class App extends Component {
 			name: e.target.innerText,
 			color: e.target.style.backgroundColor
 		}
-		// === ! OLD BAD WAY, making a shallow copy of state ! === //
-		// const stateCopy = this.state.stack
-		// stateCopy.push(newStateIngredient)
-		// this.setState({
-		// 	stack: stateCopy
-		// })
-		// === ! BETTER WAY, callback function with prevState ! === //
 		this.setState(prevState => {
-			// found that declared var needs to be named same as state otherwise it won't work
-			// adding the new ingredient at the end of the array will cause the ingredients to stack from the bottom up the way we want
 			const stack = [...prevState.stack, newStateIngredient]
 			return {stack}
 		})
@@ -50,6 +42,20 @@ export default class App extends Component {
 			stack: []
 		})
 	}
+
+    handleRemoveOne = (e) => {
+		if(!this.state.stack.length) {
+			return
+		}
+		let start = this.state.stack.length - 1
+		console.log("remove one", this.state.stack[start])
+		this.setState({
+			stack: this.state.stack.filter((item, idx) => {
+				return idx !== start
+			})
+		})
+    }
+
 	render() {
         return (
 			<>
@@ -64,6 +70,7 @@ export default class App extends Component {
 					<BurgerPane 
 						stack={this.state.stack}
 						handleRemoveFromStack={this.handleRemoveFromStack}
+						handleRemoveOne={this.handleRemoveOne}
 					/>
 				</div>
 			</>
