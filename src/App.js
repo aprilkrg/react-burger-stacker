@@ -29,10 +29,16 @@ class App extends Component {
 			name: e.target.innerText,
 			color: e.target.style.backgroundColor
 		}
-		const stateCopy = this.state.stack
-		stateCopy.push(newStateIngredient)
-		this.setState({
-			stack: stateCopy
+		// === ! OLD BAD WAY, making a shallow copy of state ! === //
+		// const stateCopy = this.state.stack
+		// stateCopy.push(newStateIngredient)
+		// this.setState({
+		// 	stack: stateCopy
+		// })
+		// === ! BETTER WAY, callback function with prevState ! === //
+		this.setState(prevState => {
+			const stack = [newStateIngredient, ...prevState.stack]
+			return {stack}
 		})
 	}
 
