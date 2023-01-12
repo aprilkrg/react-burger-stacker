@@ -14,6 +14,7 @@ export default class BurgerPane extends Component {
 
                 <BurgerStack
                     stack={this.props.stack}
+                    handleRemoveOne={this.props.handleRemoveOne}
                 />
                 
                 <button 

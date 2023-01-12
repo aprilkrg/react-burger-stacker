@@ -21,7 +21,8 @@ const ingredientsArr = [
 export default class App extends Component {
 	state = {
 		stack: [],
-		input: ""
+		input: "",
+		ingredList: [...ingredientsArr]
 	}
 
 	handleAddToStack = (e) => {
@@ -56,14 +57,29 @@ export default class App extends Component {
 		})
     }
 
+	handleAddOne = (e) => {
+		e.preventDefault()
+		console.log(this.state.ingredList)
+	}
+
+	handleChange = e => {
+        console.log('handle that change!')
+        this.setState({
+            input: e.target.value
+        })
+    }
+
 	render() {
         return (
 			<>
 				<h1>Burger Stacker</h1>
 				<div className="list-div">
 					<IngredientList 
-						items={ingredientsArr} 
+						items={this.state.ingredList} 
+						input={this.state.input}
 						handleAddToStack={this.handleAddToStack}
+						handleAddOne={this.handleAddOne}
+						handleChange={this.handleChange}
 					/>
 				</div>
 				<div className="stack-div">
