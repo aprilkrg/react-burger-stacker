@@ -10,6 +10,9 @@ export default class Ingredient extends Component {
                     backgroundColor: this.props.item.color, 
                     width: "200px"
                 }}
+                // className="
+                //     text-center
+                // "
             >
                 {this.props.item.name}
             </div>

@@ -92,8 +92,9 @@ export default class App extends Component {
 					list-div
 					col-start-1
 					text-center
+					grid justify-items-center
 				">
-				<IngredientList 
+					<IngredientList 
 						items={this.state.ingredList} 
 						input={this.state.input}
 						handleAddToStack={this.handleAddToStack}
