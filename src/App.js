@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Component } from "react";
+import { Component } from "react";
 import IngredientList from "./components/IngredientList";
 import BurgerPane from "./components/BurgerPane";
 
@@ -18,37 +18,68 @@ const ingredientsArr = [
     { name: "Onion", color: "lightyellow" },
 ];
 
-class App extends Component {
-    state = {
-        stack: [],
-    };
+export default class App extends Component {
+	state = {
+		stack: [],
+		input: "",
+		ingredList: [...ingredientsArr]
+	}
 
-    handleAddToStack = (e) => {
-        console.log(
-            "add to stack",
-            e.target.innerText,
-            e.target.style.backgroundColor
-        );
-        const newStateIngredient = {
-            name: e.target.innerText,
-            color: e.target.style.backgroundColor,
-        };
-        const stateCopy = this.state.stack;
-        stateCopy.push(newStateIngredient);
-        this.setState({
-            stack: stateCopy,
-        });
-    };
+	handleAddToStack = (e) => {
+		console.log("add to stack", e.target.innerText, e.target.style.backgroundColor)
+		const newStateIngredient = {
+			name: e.target.innerText,
+			color: e.target.style.backgroundColor
+		}
+		this.setState(prevState => {
+			const stack = [...prevState.stack, newStateIngredient]
+			return {stack}
+		})
+	}
 
-    handleRemoveFromStack = (e) => {
-        console.log("remove from stack", this.state.stack, "STATE <<<");
+	handleRemoveFromStack = (e) => {
+		console.log("remove from stack", this.state.stack)
+		this.setState({
+			stack: []
+		})
+	}
+
+    handleRemoveOne = (e) => {
+		if(!this.state.stack.length) {
+			return
+		}
+		let start = this.state.stack.length - 1
+		console.log("remove one", this.state.stack[start])
+		this.setState({
+			stack: this.state.stack.filter((item, idx) => {
+				return idx !== start
+			})
+		})
+    }
+
+	handleAddOne = (e) => {
+		e.preventDefault()
+		console.log(this.state.ingredList, e.target[0].value)
+		const ingredToAdd = {
+			name: e.target[0].value,
+			color: "#FFFFFF"
+		}
+		this.setState({
+			input: "",
+			ingredList: [...this.state.ingredList, ingredToAdd]
+		})
+	}
+
+	handleChange = e => {
+        console.log('handling input change...')
         this.setState({
-            stack: [],
-        });
-    };
-    render() {
+            input: e.target.value
+        })
+    }
+
+	render() {
         return (
-            <div className="
+			<div className="
 					grid grid-cols-2
 			">
                 <h1 className="
@@ -56,31 +87,33 @@ class App extends Component {
 					text-center
 					text-2xl
 				">
-					Burger Stacker
-				</h1>
-                <div className="
+					Burger Stacker</h1>
+				<div className="
 					list-div
 					col-start-1
 					text-center
 				">
-                    <IngredientList
-                        items={ingredientsArr}
-                        handleAddToStack={this.handleAddToStack}
-                    />
-                </div>
+				<IngredientList 
+						items={this.state.ingredList} 
+						input={this.state.input}
+						handleAddToStack={this.handleAddToStack}
+						handleAddOne={this.handleAddOne}
+						handleChange={this.handleChange}
+					/>
+				</div>
                 <div className="
 					stack-div
 					col-start-2
 					text-center
 				">
-                    <BurgerPane
-                        stack={this.state.stack}
-                        handleRemoveFromStack={this.handleRemoveFromStack}
-                    />
-                </div>
-            </div>
+					<BurgerPane 
+						stack={this.state.stack}
+						handleRemoveFromStack={this.handleRemoveFromStack}
+						handleRemoveOne={this.handleRemoveOne}
+					/>
+				</div>
+			</div>
         );
     }
 }
 
-export default App;
