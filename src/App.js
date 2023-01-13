@@ -81,21 +81,23 @@ export default class App extends Component {
         return (
 			<>
 				<h1>Burger Stacker</h1>
-				<div className="list-div">
-					<IngredientList 
-						items={this.state.ingredList} 
-						input={this.state.input}
-						handleAddToStack={this.handleAddToStack}
-						handleAddOne={this.handleAddOne}
-						handleChange={this.handleChange}
-					/>
-				</div>
-				<div className="stack-div">
-					<BurgerPane 
-						stack={this.state.stack}
-						handleRemoveFromStack={this.handleRemoveFromStack}
-						handleRemoveOne={this.handleRemoveOne}
-					/>
+				<div className="container-div">
+					<div className="list-div">
+						<IngredientList 
+							items={this.state.ingredList} 
+							input={this.state.input}
+							handleAddToStack={this.handleAddToStack}
+							handleAddOne={this.handleAddOne}
+							handleChange={this.handleChange}
+						/>
+					</div>
+					<div className="stack-div">
+						<BurgerPane 
+							stack={this.state.stack}
+							handleRemoveFromStack={this.handleRemoveFromStack}
+							handleRemoveOne={this.handleRemoveOne}
+						/>
+					</div>
 				</div>
 			</>
         );

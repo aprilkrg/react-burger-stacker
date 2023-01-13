@@ -8,7 +8,8 @@ export default class Ingredient extends Component {
                 onClick={this.props.handleAddToStack}
                 style={{
                     backgroundColor: this.props.item.color, 
-                    width: "200px"
+                    width: "200px",
+                    height: "20px"
                 }}
             >
                 {this.props.item.name}
