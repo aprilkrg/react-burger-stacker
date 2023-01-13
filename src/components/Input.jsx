@@ -21,7 +21,6 @@ export default class Input extends Component {
                             flex justify-center
                         "
                     >
-
                         <input type="submit" value="Submit" 
                             className="
                             p-1

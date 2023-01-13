@@ -13,16 +13,16 @@ export default class IngredientList extends Component {
         })
         return(
             <>
-                <Input 
-                    handleAddOne={this.props.handleAddOne}
-                    handleChange={this.props.handleChange}
-                    input={this.props.input}
-                />
                 <h2 className="
                     text-xl
                 ">
                     Ingredient List
                 </h2>
+                <Input 
+                    handleAddOne={this.props.handleAddOne}
+                    handleChange={this.props.handleChange}
+                    input={this.props.input}
+                />
                {listToRender}
             </>
         )
