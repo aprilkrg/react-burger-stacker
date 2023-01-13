@@ -27,7 +27,8 @@ export default class App extends Component {
 	handleAddToStack = e => {
 		console.log("add to stack", e.target.innerText)
 		const newStateIngredient = {
-			name: e.target.innerText
+			name: e.target.innerText,
+			color: e.target.style.backgroundColor
 		}
 		this.setState(prevState => {
 			const stack = [...prevState.stack, newStateIngredient]
