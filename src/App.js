@@ -80,7 +80,7 @@ export default class App extends Component {
 	render() {
         return (
 			<div className="
-					grid grid-cols-2
+				grid grid-cols-2
 			">
                 <h1 className="
 					col-span-2
