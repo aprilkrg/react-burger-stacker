@@ -3,6 +3,7 @@ import { Component } from "react";
 import IngredientList from "./components/IngredientList";
 import BurgerPane from "./components/BurgerPane";
 
+
 const ingredientsArr = [
     { name: "Kaiser Bun", color: "saddlebrown" },
     { name: "Sesame Bun", color: "sandybrown" },
@@ -21,45 +22,44 @@ const ingredientsArr = [
 export default class App extends Component {
 	state = {
 		stack: [],
-		input: "",
-		ingredList: [...ingredientsArr]
+		indegredList: [...ingredientsArr],
+		input: ""
 	}
 
 	handleAddToStack = (e) => {
 		console.log("add to stack", e.target.innerText, e.target.style.backgroundColor)
-		const newStateIngredient = {
+		const newStackIngredient = {
 			name: e.target.innerText,
 			color: e.target.style.backgroundColor
 		}
+		console.log("new stack", newStackIngredient)
 		this.setState(prevState => {
-			const stack = [...prevState.stack, newStateIngredient]
+			const stack = [...prevState.stack, newStackIngredient]
 			return {stack}
 		})
 	}
 
-	handleRemoveFromStack = (e) => {
-		console.log("remove from stack", this.state.stack)
+	handleClearStack = () => {
 		this.setState({
 			stack: []
 		})
 	}
 
-    handleRemoveOne = (e) => {
-		if(!this.state.stack.length) {
-			return
-		}
-		let start = this.state.stack.length - 1
-		console.log("remove one", this.state.stack[start])
+	handleRemoveOne = () => {
+		// what is stack.length == 0?
+		// get index of final element in stack
+		let index = this.state.stack.length - 1
+		console.log("remove =>", this.state.stack[index])
 		this.setState({
-			stack: this.state.stack.filter((item, idx) => {
-				return idx !== start
+			stack: this.state.stack.filter((item, i) => {
+				return i !== index
 			})
 		})
-    }
+	}
 
 	handleAddOne = (e) => {
 		e.preventDefault()
-		console.log(this.state.ingredList, e.target[0].value)
+		console.log(this.state.indegredList, e.target)
 		const ingredToAdd = {
 			name: e.target[0].value,
 			color: "#FFFFFF"
@@ -70,35 +70,28 @@ export default class App extends Component {
 		})
 	}
 
-	handleChange = e => {
-        console.log('handling input change...')
-        this.setState({
-            input: e.target.value
-        })
-    }
+	handleChange = (e) => {
+		this.setState({
+			input: e.target.value
+		})
+	}
 
 	render() {
         return (
 			<>
 				<h1>Burger Stacker</h1>
-				<div className="container-div">
-					<div className="list-div">
-						<IngredientList 
-							items={this.state.ingredList} 
-							input={this.state.input}
-							handleAddToStack={this.handleAddToStack}
-							handleAddOne={this.handleAddOne}
-							handleChange={this.handleChange}
-						/>
-					</div>
-					<div className="stack-div">
-						<BurgerPane 
-							stack={this.state.stack}
-							handleRemoveFromStack={this.handleRemoveFromStack}
-							handleRemoveOne={this.handleRemoveOne}
-						/>
-					</div>
-				</div>
+				<IngredientList 
+					items={ingredientsArr}
+					handleAddToStack={this.handleAddToStack}
+					handleAddOne={this.handleAddOne}
+					input={this.state.input}
+					handleChange={this.handleChange}
+				/>
+				<BurgerPane 
+					stack={this.state.stack}
+					handleClearStack={this.handleClearStack}
+					handleRemoveOne={this.handleRemoveOne}
+				/>
 			</>
         );
     }
