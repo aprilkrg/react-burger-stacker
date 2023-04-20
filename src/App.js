@@ -59,14 +59,15 @@ export default class App extends Component {
 
 	handleAddOne = (e) => {
 		e.preventDefault()
-		console.log(this.state.indegredList, e.target)
+		console.log(this.state.indegredList, e.target[0].value)
 		const ingredToAdd = {
 			name: e.target[0].value,
 			color: "#FFFFFF"
 		}
+		console.log("new =>", ingredToAdd)
 		this.setState({
-			input: "",
-			ingredList: [...this.state.ingredList, ingredToAdd]
+			// ingredList: [...this.state.ingredList, ingredToAdd],
+			input: ""
 		})
 	}
 
