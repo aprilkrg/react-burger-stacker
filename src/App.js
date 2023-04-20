@@ -66,7 +66,7 @@ export default class App extends Component {
 		}
 		console.log("new =>", ingredToAdd)
 		this.setState({
-			// ingredList: [...this.state.ingredList, ingredToAdd],
+			indegredList: [...this.state.indegredList, ingredToAdd],
 			input: ""
 		})
 	}
@@ -82,7 +82,7 @@ export default class App extends Component {
 			<>
 				<h1>Burger Stacker</h1>
 				<IngredientList 
-					items={ingredientsArr}
+					items={this.state.indegredList}
 					handleAddToStack={this.handleAddToStack}
 					handleAddOne={this.handleAddOne}
 					input={this.state.input}
